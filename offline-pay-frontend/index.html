@@ -1,24 +1,82 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#4f46e5" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>OfflinePay - Secure Wallet</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker registered', reg))
-            .catch(err => console.error('SW registration failed:', err));
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- ===== PWA Core ===== -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- ===== Favicon ===== -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+
+  <!-- ===== Apple PWA (iOS "Add to Home Screen") ===== -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="OfflinePay" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
+
+  <!-- ===== Microsoft / Windows ===== -->
+  <meta name="msapplication-TileColor" content="#4f46e5" />
+  <meta name="msapplication-TileImage" content="/icon-192.png" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <!-- ===== SEO & Social ===== -->
+  <title>OfflinePay - Secure Wallet</title>
+  <meta name="description"
+    content="A secure offline-to-online QR-based digital payment system with wallet management, QR payments, and bank transfers." />
+  <meta name="keywords" content="offline payment, QR payment, digital wallet, UPI, secure payment PWA" />
+  <meta name="author" content="OfflinePay" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="OfflinePay - Secure Wallet" />
+  <meta property="og:description" content="Send and receive payments securely, even without internet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/icon-512.png" />
+
+  <!-- ===== Performance ===== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- ===== Service Worker Registration ===== -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+          .then((reg) => {
+            console.log('[PWA] Service Worker registered. Scope:', reg.scope);
+
+            // Listen for SW updates and auto reload
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('[PWA] New version available — reload to update.');
+                }
+              });
+            });
+          })
+          .catch((err) => console.error('[PWA] SW registration failed:', err));
+
+        // Listen for messages from SW (e.g. background sync trigger)
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data?.type === 'SYNC_REQUESTED') {
+            console.log('[PWA] Background sync triggered by SW.');
+            // offlinePaymentService.syncTransactions() can be called here
+          }
         });
-      }
-    </script>
-  </body>
+      });
+    }
+  </script>
+</body>
+
 </html>

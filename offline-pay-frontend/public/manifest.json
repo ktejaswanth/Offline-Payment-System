@@ -1,22 +1,68 @@
 {
     "name": "OfflinePay - Secure Wallet",
     "short_name": "OfflinePay",
-    "description": "A secure offline payment PWA system using ECDSA signatures.",
+    "description": "A secure offline-to-online QR-based digital payment system with wallet, transaction history, and bank management.",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait-primary",
     "background_color": "#0f172a",
     "theme_color": "#4f46e5",
+    "lang": "en",
+    "categories": [
+        "finance",
+        "utilities"
+    ],
     "icons": [
         {
-            "src": "/vite.svg",
+            "src": "/icon-192.png",
             "sizes": "192x192",
-            "type": "image/svg+xml",
-            "purpose": "any maskable"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "/vite.svg",
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/icon-512.png",
             "sizes": "512x512",
-            "type": "image/svg+xml"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Send Payment",
+            "short_name": "Send",
+            "description": "Send money to another user",
+            "url": "/send",
+            "icons": [
+                {
+                    "src": "/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Scan QR",
+            "short_name": "Scan",
+            "description": "Scan a payment QR code",
+            "url": "/receive",
+            "icons": [
+                {
+                    "src": "/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ]
 }
