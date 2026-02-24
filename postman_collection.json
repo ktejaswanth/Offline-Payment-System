@@ -1,0 +1,277 @@
+{
+    "info": {
+        "name": "Offline Payment Gateway API",
+        "description": "API collection for the Spring Boot Backend handling secure online & offline transactions.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/register",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Login User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Wallet",
+            "item": [
+                {
+                    "name": "Get Balance",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/wallet/balance?email=johndoe@example.com",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "wallet",
+                                "balance"
+                            ],
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "johndoe@example.com"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Money",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/wallet/add?email=johndoe@example.com&amount=100.50",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "wallet",
+                                "add"
+                            ],
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "johndoe@example.com"
+                                },
+                                {
+                                    "key": "amount",
+                                    "value": "100.50"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Transactions",
+            "item": [
+                {
+                    "name": "Send Money (Online)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"receiverId\": \"{{receiver_uuid}}\",\n    \"amount\": 50.00\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/transaction/send",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "transaction",
+                                "send"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Transaction History",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8080/api/transaction/history",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "transaction",
+                                "history"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Offline Syncer",
+            "item": [
+                {
+                    "name": "Verify Extracted QR",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"senderId\": \"{{sender_uuid}}\",\n    \"receiverId\": \"{{your_uuid}}\",\n    \"amount\": 15.00,\n    \"nonce\": \"unique-uuid-string\",\n    \"signature\": \"base64_encoded_ecdsa_signature\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/offline-transaction/verify",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "offline-transaction",
+                                "verify"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Bulk Sync Background",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"senderId\": \"{{sender_uuid}}\",\n        \"receiverId\": \"{{receiver_uuid}}\",\n        \"amount\": 25.00,\n        \"nonce\": \"unique-uuid-1\",\n        \"signature\": \"base64_sig_1\"\n    }\n]"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/offline-transaction/sync",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "offline-transaction",
+                                "sync"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

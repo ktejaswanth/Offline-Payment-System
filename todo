@@ -1,0 +1,200 @@
+🏗 BACKEND TODO LIST (Spring Boot)
+✅ PHASE 1 — Foundation (✔ Completed)
+
+ Project setup
+
+ Supabase PostgreSQL connection
+
+ Tables created (users, wallets, transactions)
+
+ User entity
+
+ UserRepository
+
+ ✅ Register API
+
+ ✅ Login API
+
+ ✅ Password encryption (BCrypt)
+
+ ✅ JWT token generation
+
+🚧 PHASE 2 — Authentication Upgrade (In Progress)
+
+ Implement JWT Authentication Filter
+
+ ✅ Extract user from JWT token
+
+ ✅ Secure all APIs except /auth
+
+ Global exception handler
+
+ Role-based access (optional)
+
+💰 PHASE 3 — Wallet Module
+
+ Create Wallet entity
+
+ Auto-create wallet on signup
+
+ WalletRepository
+
+ WalletService
+
+ Get wallet balance API
+
+ Add money API (for testing)
+
+ Deduct balance logic
+
+ Prevent negative balance
+
+💳 PHASE 4 — Transaction Module (Core of Project)
+
+ Transaction entity mapping
+
+ TransactionRepository
+
+ Generate nonce
+
+ Verify nonce uniqueness
+
+ Verify digital signature
+
+ Validate sufficient balance
+
+ Deduct balance
+
+ Store transaction record
+
+ Transaction history API
+
+ Prevent double spending
+
+🔐 PHASE 5 — Security Enhancements
+
+ Rate limiting
+
+ Input validation
+
+ Request logging
+
+ Audit logging
+
+ Encryption utilities
+
+🚀 PHASE 6 — Production Ready
+
+ Dockerize backend
+
+ Deploy to AWS / Render
+
+ Environment variables
+
+ CI/CD pipeline
+
+ Health check endpoint
+
+ Swagger API documentation
+
+📱 FRONTEND TODO LIST
+
+(React / React Native / Kotlin)
+
+🎨 PHASE 1 — Basic UI
+
+ Project setup
+
+ Login page
+
+ Signup page
+
+ JWT token storage
+
+ Protected routes
+
+ Dashboard page
+
+💰 PHASE 2 — Wallet UI
+
+ Show wallet balance
+
+ Add money screen
+
+ Transaction history screen
+
+ Refresh wallet balance
+
+📷 PHASE 3 — Offline Payment Feature
+
+ Generate QR for payment
+
+ Encode transaction payload
+
+ Generate nonce
+
+ Sign payload (private key)
+
+ Scan QR (receiver side)
+
+ Send transaction to backend
+
+ Show payment success/failure
+
+🔌 PHASE 4 — Offline Mode Support
+
+ Service workers (if PWA)
+
+ Store pending transactions locally
+
+ Sync when internet available
+
+ Show offline indicator
+
+ Limit offline spending
+
+🛡 PHASE 5 — Security
+
+ Store JWT securely
+
+ Encrypt local storage
+
+ Prevent replay attacks
+
+ Token expiration handling
+
+🧠 FINAL SYSTEM FLOW
+Sender (Offline)
+    ↓ QR
+Receiver (Online)
+    ↓
+Backend verifies:
+    - JWT
+    - Signature
+    - Nonce
+    - Balance
+    ↓
+Update Wallet
+    ↓
+Store Transaction
+🎯 Current Status
+
+You are at:
+
+Backend Phase 2
+Authentication almost complete
+Ready to move into Wallet module
+
+🚀 Recommendation
+
+Next build:
+
+👉 Wallet Module (because payment system without wallet is incomplete)
+
+If you want, I can now:
+
+Create complete Wallet backend code
+
+OR design full Offline Payment Flow diagram
+
+OR plan fron

@@ -1,0 +1,34 @@
+# ===== Backend =====
+offline-payment-backend/target/
+offline-payment-backend/.mvn/wrapper/maven-wrapper.jar
+offline-payment-backend/*.log
+
+# Sensitive — never commit real credentials!
+offline-payment-backend/src/main/resources/application.properties
+
+# ===== Frontend =====
+offline-pay-frontend/node_modules/
+offline-pay-frontend/dist/
+offline-pay-frontend/.env
+offline-pay-frontend/.env.local
+offline-pay-frontend/.env.production
+
+# ===== IDE / OS =====
+.idea/
+.vscode/settings.json
+*.iml
+.DS_Store
+Thumbs.db
+*.log
+
+# ===== Eclipse Workspace Metadata =====
+.metadata/
+*.project
+*.classpath
+*.settings/
+.buildpath
+
+# ===== Misc =====
+*.class
+*.jar
+!offline-payment-backend/mvnw
