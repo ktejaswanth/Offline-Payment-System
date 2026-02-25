@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:8080/api/auth";
+const API = "https://offline-payment-system-backend.onrender.com/api/auth";
 
 export const register = async (data) => {
   return await axios.post(`${API}/register`, data);
@@ -17,14 +17,14 @@ const getAuthHeaders = () => {
 
 export const getBalance = async (email) => {
   return await axios.get(
-    `http://localhost:8080/api/wallet/balance?email=${email}`,
+    `https://offline-payment-system-backend.onrender.com/api/wallet/balance?email=${email}`,
     getAuthHeaders()
   );
 };
 
 export const addMoney = async (email, amount) => {
   return await axios.post(
-    `http://localhost:8080/api/wallet/add?email=${email}&amount=${amount}`,
+    `https://offline-payment-system-backend.onrender.com/api/wallet/add?email=${email}&amount=${amount}`,
     {},
     getAuthHeaders()
   );
@@ -32,7 +32,7 @@ export const addMoney = async (email, amount) => {
 
 export const withdrawMoney = async (email, amount) => {
   return await axios.post(
-    `http://localhost:8080/api/wallet/withdraw?email=${email}&amount=${amount}`,
+    `https://offline-payment-system-backend.onrender.com/api/wallet/withdraw?email=${email}&amount=${amount}`,
     {},
     getAuthHeaders()
   );
@@ -40,7 +40,7 @@ export const withdrawMoney = async (email, amount) => {
 
 export const getTransactions = async () => {
   return await axios.get(
-    `http://localhost:8080/api/transaction/history`,
+    `https://offline-payment-system-backend.onrender.com/api/transaction/history`,
     getAuthHeaders()
   );
 };
