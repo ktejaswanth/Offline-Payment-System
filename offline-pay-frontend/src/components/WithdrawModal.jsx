@@ -22,7 +22,7 @@ export default function WithdrawModal({ isOpen, onClose, amountWithdrawn }) {
 
     useEffect(() => {
         if (isOpen) {
-            axios.get('http://localhost:8080/api/user/profile', getAuthHeaders())
+            axios.get('https://offline-payment-system-backend.onrender.com/api/user/profile', getAuthHeaders())
                 .then(res => {
                     const d = res.data;
                     if (d.bankAccountNumber || d.bankIfsc) {
