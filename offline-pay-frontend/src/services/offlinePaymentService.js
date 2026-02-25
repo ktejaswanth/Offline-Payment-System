@@ -39,7 +39,7 @@ export const syncTransactions = async () => {
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
         // Use our backend endpoint
-        const response = await axios.post('http://localhost:8080/api/offline-transaction/sync', pendingTxs, { headers });
+        const response = await axios.post('https://offline-payment-system-backend.onrender.com/api/offline-transaction/sync', pendingTxs, { headers });
 
         if (response.status === 200) {
             console.log("Sync successful!");
