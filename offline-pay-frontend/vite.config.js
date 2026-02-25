@@ -22,7 +22,7 @@ export default defineConfig({
     // Proxy API calls to backend during development
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://offline-payment-system-backend.onrender.com',
         changeOrigin: true,
       }
     }
