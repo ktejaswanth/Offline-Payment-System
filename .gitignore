@@ -3,8 +3,7 @@ offline-payment-backend/target/
 offline-payment-backend/.mvn/wrapper/maven-wrapper.jar
 offline-payment-backend/*.log
 
-# Sensitive — never commit real credentials!
-offline-payment-backend/src/main/resources/application.properties
+# application.properties is now safe to commit — credentials are in Render env vars, not in this file
 
 # ===== Frontend =====
 offline-pay-frontend/node_modules/
