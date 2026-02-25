@@ -66,7 +66,7 @@ export default function SendPayment() {
             const token = localStorage.getItem("token");
             if (!token) throw new Error("Please log in first.");
 
-            const res = await axios.post("http://localhost:8080/api/transaction/send", {
+            const res = await axios.post("https://offline-payment-system-backend.onrender.com/api/transaction/send", {
                 receiverId,
                 amount: parseFloat(amount)
             }, {
