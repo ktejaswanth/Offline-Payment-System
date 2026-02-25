@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, User, Phone, Mail, Building2, CreditCard, Save, Camera, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 
-const API = 'http://localhost:8080/api/user';
+const API = 'https://offline-payment-system-backend.onrender.com/api/user';
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
