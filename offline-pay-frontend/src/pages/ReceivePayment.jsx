@@ -64,7 +64,7 @@ export default function ReceivePayment() {
             setStatus("Verifying signature with server...");
 
             // Post to our backend to verify the offline transaction
-            const res = await axios.post("http://localhost:8080/api/offline-transaction/verify", payload, {
+            const res = await axios.post("https://offline-payment-system-backend.onrender.com/api/offline-transaction/verify", payload, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
