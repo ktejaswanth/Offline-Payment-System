@@ -1,23 +1,258 @@
-# OfflinePay — Secure Offline-to-Online QR Payment System
+# 🚀 Offline Payment System (Full Stack PWA)
 
-A Progressive Web App (PWA) for secure QR-based digital payments that works both online and offline.
+A full-stack Progressive Web Application (PWA) that enables secure wallet-based digital payments with support for offline transaction capability and later synchronization.
 
 ---
 
-## 📋 Prerequisites
+# 📌 Problem Statement
 
-Before running this project, make sure you have these installed on your machine:
+In many rural and low-network areas, digital payments fail due to unstable internet connectivity. Traditional payment systems require continuous online verification, making them unreliable in low-connectivity regions.
 
-| Tool | Version | Download |
-|------|---------|----------|
-| **Java JDK** | 17 or higher | https://adoptium.net |
-| **Node.js** | 18 or higher | https://nodejs.org |
-| **npm** | 9 or higher | Comes with Node.js |
-| **PostgreSQL** | 14+ (or Supabase cloud) | https://www.postgresql.org |
-| **Git** | Any | https://git-scm.com |
+There is a need for a secure digital wallet system that:
 
-> ✅ **No Python or `requirements.txt` needed** — Java dependencies are managed by `pom.xml`, and frontend dependencies by `package.json`.
+- Allows transactions even when offline
+- Syncs transactions once internet is available
+- Maintains financial integrity
+- Provides a smooth mobile-friendly experience
 
+---
+
+# 💡 Solution
+
+Offline Payment System is a wallet-based digital payment platform that:
+
+- Enables secure user authentication
+- Provides wallet balance management
+- Supports offline transaction storage
+- Syncs pending transactions when back online
+- Works as a Progressive Web App (PWA)
+
+---
+
+# 🏗️ System Architecture
+
+Frontend (React PWA)
+        ↓
+REST API
+        ↓
+Backend (Spring Boot)
+        ↓
+Supabase PostgreSQL (Session Pooler)
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- React.js
+- PWA (Service Worker)
+- IndexedDB / Local Storage
+- Axios
+- QR Code Scanner
+
+## Backend
+- Spring Boot 3
+- Spring Security
+- JWT Authentication
+- Spring Data JPA
+- Hibernate
+
+## Database
+- Supabase PostgreSQL
+- Session Pooler (IPv4 compatible)
+
+## Deployment
+- Frontend: Vercel / Netlify
+- Backend: Render (Dockerized)
+- Database: Supabase Cloud
+
+---
+
+# 🔐 Authentication Module
+
+## Features:
+- User Registration
+- User Login
+- JWT Token Generation
+- Secure Password Hashing (BCrypt)
+
+## Endpoints:
+
+POST `/api/auth/register`  
+POST `/api/auth/login`
+
+---
+
+# 👤 User Module
+
+## Features:
+- Unique user account
+- Email-based identification
+- Automatic wallet creation
+
+---
+
+# 💰 Wallet Module
+
+## Features:
+- Wallet balance tracking
+- Add money functionality
+- Secure transaction updates
+
+## Endpoints:
+
+GET `/api/wallet/balance`  
+POST `/api/wallet/add`
+
+---
+
+# 🔄 Offline Transaction Module (PWA Feature)
+
+## Flow:
+
+1. User initiates payment
+2. If offline:
+   - Transaction stored locally
+   - Marked as "Pending"
+3. When internet is restored:
+   - Sync service pushes transactions to backend
+   - Wallet balances updated
+   - Transaction marked "Completed"
+
+---
+
+# 📦 Modules Overview
+
+## 1️⃣ Authentication Module
+Handles user identity and security.
+
+## 2️⃣ Wallet Module
+Manages balance and updates.
+
+## 3️⃣ Transaction Module
+Records transfers and maintains transaction history.
+
+## 4️⃣ Offline Sync Engine
+Handles:
+- Local storage
+- Sync queue
+- Conflict resolution
+
+## 5️⃣ QR Payment Module
+Allows quick wallet transfers using QR codes.
+
+---
+
+# 🔄 Working Flow
+
+## 🧍 User Registration Flow
+1. User enters name, email, password
+2. Backend creates user
+3. Wallet auto-created
+4. JWT token returned
+
+---
+
+## 🔑 Login Flow
+1. User enters credentials
+2. Password verified
+3. JWT token generated
+4. Token used for future requests
+
+---
+
+## 💸 Online Payment Flow
+1. User scans QR / enters receiver ID
+2. Backend validates balance
+3. Deduct sender balance
+4. Add receiver balance
+5. Save transaction
+
+---
+
+## 📴 Offline Payment Flow
+1. User initiates transaction offline
+2. Transaction saved in IndexedDB
+3. Status = Pending
+4. Service Worker monitors network
+5. On reconnect:
+   - Sync pending transactions
+   - Update database
+   - Mark as completed
+
+---
+
+# 🔒 Security Features
+
+- JWT Authentication
+- Password encryption
+- Role-based access (optional)
+- HTTPS enforced
+- Secure DB session pooling
+
+---
+
+# 🌍 Real World Impact
+
+- Enables payments in rural areas
+- Reduces dependency on continuous internet
+- Enhances digital financial inclusion
+- Useful for transportation, small vendors, events
+
+---
+
+# 🚀 Deployment Guide
+
+## Backend (Render)
+- Connect GitHub repo
+- Use Docker runtime
+- Set environment variables:
+  - DB_URL
+  - DB_USERNAME
+  - DB_PASSWORD
+  - JWT_SECRET
+  - SPRING_PROFILES_ACTIVE=prod
+
+## Frontend (Vercel)
+- Connect frontend folder
+- Enable PWA service worker
+- Set API base URL
+
+---
+
+# 🔮 Future Enhancements
+
+- NFC Payments
+- AI Fraud Detection
+- Multi-wallet support
+- Admin Dashboard
+- Payment Analytics
+- UPI Integration
+- Blockchain audit trail
+
+---
+
+# 📊 Project Status
+
+✅ Authentication  
+✅ Wallet System  
+✅ Supabase Integration  
+✅ JWT Security  
+⏳ Offline Sync Optimization  
+⏳ QR Scanner Enhancement  
+
+---
+
+# 👨‍💻 Author
+
+Tejaswanth  
+Offline Payment System – Full Stack PWA Project
+
+---
+
+# 📄 License
+
+MIT License
 ---
 
 ## 🗂️ Project Structure
